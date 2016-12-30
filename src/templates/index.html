@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for post in posts %}
+<p>ID: {{ post.id }} <a href="{% url 'delete' post_id=post.id %}">X</a><a href="{% url 'post_edit' post_id=post.id %}">Edit</a></p>
+<p>Author: {{ post.value.author }}</p>
+<p>Title: {{ post.value.title }}</p>
+<p>Text: {{ post.value.text }}</p>
+
+<hr>
+
+{% endfor %}
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.author }}
+    <br>
+    {{ form.title }}
+
+    {{ form.errors }}
+    <br>
+    {{ form.text }}
+    {{ form.type }}
+<br>
+    <button type="submit">Submit</button>
+
+</form>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form2.author }}
+    <br>
+    {{ form2.comment}}
+
+    {{ form2.errors }}
+    <br>
+    {{ form2.type }}
+<br>
+    <button type="submit">Submit</button>
+
+</form>
+</body>
+</html>
